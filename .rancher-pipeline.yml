@@ -1,17 +1,18 @@
 stages:
-  - name: Build
-    steps:
-      - runScriptConfig:
-          image: maven:3.6.3-adoptopenjdk-14
-          shellScript: |-
-            mvnDebug clean install
-  - name: Publish
-    steps:
-      - publishImageConfig:
-          dockerfilePath: ./Dockerfile
-          buildContext: .
-          tag: example-bookstoremanager:${CICD_EXECUTION_SEQUENCE}
-  - name: Deploy
-    steps:
-      - applyYamlConfig:
-          path: ./deployment.yaml
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: maven:3.6.3-adoptopenjdk-14
+      shellScript: mvnDebug clean install
+- name: Publish
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: example-bookstoremanager:${CICD_EXECUTION_SEQUENCE}
+      registry: 127.0.0.1:34087
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+notification: {}
