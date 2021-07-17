@@ -4,7 +4,7 @@ stages:
       - runScriptConfig:
           image: maven:3.6.3-adoptopenjdk-14
           shellScript: |-
-            mvn clean install
+            mvn clean install -X
   - name: Publish
     steps:
       - publishImageConfig:
