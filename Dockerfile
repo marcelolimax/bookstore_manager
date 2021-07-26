@@ -1,5 +1,7 @@
 FROM openjdk:16-alpine3.13
 
+ENV TESTE=marcelo
+
 WORKDIR /app
 ADD target/bookstoremanager-0.0.1-SNAPSHOT.jar /app/
 
